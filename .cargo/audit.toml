@@ -1,0 +1,8 @@
+[output]
+deny = ["warnings"]
+quiet = false
+
+[advisories]
+ignore = [
+	"RUSTSEC-2024-0370", # proc-macro-error is unmaintained
+]

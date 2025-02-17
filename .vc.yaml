@@ -1,0 +1,50 @@
+api: 0.1.12
+workspaces:
+  jaeger-anomaly-detection:
+    type: cargo
+    root: .
+    pre_commit:
+      - run: cargo update -w
+        files:
+          - Cargo.lock
+artifacts:
+  jaeger-anomaly-detection-engine:
+    type: docker
+    pre_tag:
+      - working_dir: repo
+        run: |
+          DOCKER_BUILDKIT=1 docker build --ssh default --target image-release -t jaeger-anomaly-detection:$VC_ARTIFACT_VERSION . &&
+          docker tag jaeger-anomaly-detection:$VC_ARTIFACT_VERSION gitea.contc/continuousc/jaeger-anomaly-detection:$VC_ARTIFACT_VERSION &&
+          docker push gitea.contc/continuousc/jaeger-anomaly-detection:$VC_ARTIFACT_VERSION
+    source:
+      type: cargo
+      workspace: jaeger-anomaly-detection
+      root: engine
+      dependencies:
+        - name: prometheus-core
+          artifact: prometheus-core
+        - name: prometheus-expr
+          artifact: prometheus-expr
+        - name: prometheus-schema
+          artifact: prometheus-schema
+        - name: prometheus-api
+          artifact: prometheus-api
+        - name: jaeger-anomaly-detection
+          artifact: jaeger-anomaly-detection
+  jaeger-anomaly-detection:
+    type: cargo
+    pre_tag:
+      - run: cargo publish --registry si
+    source:
+      type: cargo
+      workspace: jaeger-anomaly-detection
+      root: lib
+      dependencies:
+        - name: prometheus-core
+          artifact: prometheus-core
+        - name: prometheus-expr
+          artifact: prometheus-expr
+        - name: prometheus-api
+          artifact: prometheus-api
+        - name: prometheus-schema
+          artifact: prometheus-schema

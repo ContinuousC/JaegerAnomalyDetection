@@ -1,0 +1,17 @@
+[workspace]
+resolver = "2"
+members = [
+	"lib",
+	"engine",
+]
+
+[patch.si]
+jaeger-anomaly-detection = { path = "lib" }
+
+# prometheus-schema = { path = "../PrometheusSchema/schema" }
+# prometheus-expr = { path = "../PrometheusSchema/expr" }
+
+[patch.crates-io]
+schemars_derive = { registry = "si", version = "0.8.21" }
+apistos = { registry = "si", version = "0.2.5" }
+schemars = { registry = "si", version = "0.8.22" }

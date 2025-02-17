@@ -1,0 +1,28 @@
+################################################################################
+# Copyright ContinuousC. Licensed under the "Elastic License 2.0".             #
+################################################################################
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: jaeger-anomaly-detection
+spec:
+  type: service
+  owner: developers
+  system: continuousc-jaeger
+  lifecycle: development
+  providesApis:
+    - jaeger-anomaly-detection-api
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: jaeger-anomaly-detection-api
+  description: Jaeger Anomaly Detection API
+spec:
+  type: openapi
+  lifecycle: development
+  owner: developers
+  system: continuousc-jaeger
+  definition:
+    $text: ./openapi.json

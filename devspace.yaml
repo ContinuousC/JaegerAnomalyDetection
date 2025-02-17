@@ -1,0 +1,71 @@
+################################################################################
+# Copyright ContinuousC. Licensed under the "Elastic License 2.0".             #
+################################################################################
+
+version: v2beta1
+name: jaeger-anomaly-detection
+
+pullSecrets:
+  gitea:
+    registry: gitea.contc
+
+vars:
+  SSH_KEYDIR:
+    source: env
+    default: ~/.ssh
+
+dev:
+  jaeger-anomaly-detection:
+    imageSelector: gitea.contc/continuousc/jaeger-anomaly-detection
+    devImage: gitea.contc/controlplane/rust-builder:0.1.9
+    workingDir: /root/source/JaegerAnomalyDetection
+    command:
+      - /usr/bin/ssh-agent
+      - /bin/bash
+      - -c
+      - |
+        ssh-add ~/.ssh/id_ed25519
+        /root/.cargo/bin/cargo watch -w . -x 'run --bin jaeger-anomaly-detection-engine -- --state=/var/lib/jaeger-anomaly-detection/state.cbor --opensearch-ca=/etc/opensearch/tls/ca.crt --opensearch-cert=/etc/opensearch/tls/tls.crt --opensearch-key=/etc/opensearch/tls/tls.key --opensearch-url=https://opensearch-cluster-master:9200 --prometheus-url=http://cortex-distributor.cortex:8080/api/v1/push --prometheus-tenant ${USER}-${TENANT} --bind 0.0.0.0:80'
+    logs: {}
+    resources:
+      requests:
+        cpu: "0.3"
+        memory: 512Mi
+    env:
+      - name: CARGO_TERM_COLOR
+        value: always
+      - name: RUST_BACKTRACE
+        value: "1"
+      - name: RUST_LOG
+        value: debug
+      - name: OTEL_EXPORTER_OTLP_ENDPOINT
+        value: grpc://jaeger-collector:4317
+    sync:
+      - path: .:/root/source/JaegerAnomalyDetection
+        excludeFile: .gitignore
+        startContainer: true
+        disableDownload: true
+        printLogs: true
+      - path: ../PrometheusSchema:/root/source/PrometheusSchema
+        excludePaths:
+          - /.git
+          - /.devspace
+          - /.vscode
+          - /devspace.yaml
+          - /target
+          - "*~"
+        startContainer: true
+        disableDownload: true
+        printLogs: true
+      - path: ${SSH_KEYDIR}/id_ed25519:/root/.ssh/id_ed25519
+        startContainer: true
+        disableDownload: true
+        onUpload:
+          restartContainer: true
+    persistPaths:
+      - path: /root/.cargo/registry
+        volumePath: cargo-registry
+        skipPopulate: true
+      - path: /root/source/JaegerAnomalyDetection/target
+        volumePath: cargo-target
+        skipPopulate: true

@@ -1,0 +1,216 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Jaeger Anomaly Detection API",
+    "version": "0.1.1-acc.4"
+  },
+  "servers": [],
+  "paths": {
+    "/api/jaeger-anomaly-detection/config": {
+      "get": {
+        "summary": "Get the current config",
+        "operationId": "get_api-jaeger-anomaly-detection-config-695b336cc39e3619748eeb3f065433d9",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Config"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "summary": "Update the config",
+        "operationId": "post_api-jaeger-anomaly-detection-config-695b336cc39e3619748eeb3f065433d9",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Config"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Success"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/jaeger-anomaly-detection/expr/welford": {
+      "post": {
+        "summary": "Get prometheus expressions",
+        "operationId": "post_api-jaeger-anomaly-detection-expr-welford-049090d8b2b297133b520530c8f21e91",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WelfordParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WelfordExprs"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/jaeger-anomaly-detection/prometheus-schema": {
+      "get": {
+        "summary": "Get a prometheus schema for the current config",
+        "operationId": "get_api-jaeger-anomaly-detection-prometheus-schema-1312ddee7325a63a541fcf0e63e2c570",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Yaml_for_Module"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/graph/example": {
+      "get": {
+        "summary": "Show example graph",
+        "operationId": "get_graph-example-a2ed21d75b57a0742e069b20ee3fa0f8",
+        "parameters": [
+          {
+            "name": "duration",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": "5m",
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/PromDuration"
+                }
+              ]
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": "1d",
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/PromDuration"
+                }
+              ]
+            }
+          },
+          {
+            "name": "operation",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": 0.99,
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "service",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/GraphType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GraphType": {
+        "type": "string",
+        "enum": [
+          "duration",
+          "busy",
+          "call_rate",
+          "error_rate"
+        ]
+      },
+      "PromDuration": {
+        "type": "string"
+      }
+    }
+  }
+}

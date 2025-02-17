@@ -1,0 +1,206 @@
+kind: pipeline
+type: docker
+name: jaeger-anomaly-detection
+
+# TODO: fix this in drone installation
+clone:
+  skip_verify: true
+
+environment:
+  DOCKER_HOST: unix:///var/run/docker.sock
+  BUILDKIT_NO_CLIENT_TOKEN: 1
+  DOCKER_BUILDKIT: 1
+
+steps:
+
+  - name: builder
+    image: plugins/docker
+    volumes:
+      - name: dockerd
+        path: /var/run/docker.sock
+    settings:
+      daemon_off: true
+      dry_run: true
+      repo: jaeger-anomaly-detection-source
+      target: source
+
+  - name: test
+    depends_on:
+      - builder
+    image: plugins/docker
+    volumes:
+      - name: dockerd
+        path: /var/run/docker.sock
+    settings:
+      daemon_off: true
+      dry_run: true
+      ssh_agent_key:
+        from_secret: drone-ssh-key
+      repo: jaeger-anomaly-detection-test
+      target: test
+
+  - name: audit
+    depends_on:
+      - builder
+    image: plugins/docker
+    volumes:
+      - name: dockerd
+        path: /var/run/docker.sock
+    settings:
+      daemon_off: true
+      dry_run: true
+      ssh_agent_key:
+        from_secret: drone-ssh-key
+      repo: jaeger-anomaly-detection-audit
+      target: audit
+
+  - name: build-image-dev
+    when:
+      ref:
+        - refs/tags/jaeger-anomaly-detection_v*
+        - refs/heads/main
+    depends_on:
+      - test
+      - audit
+    image: plugins/docker
+    volumes:
+      - name: dockerd
+        path: /var/run/docker.sock
+    settings:
+      daemon_off: true
+      dry_run: true
+      ssh_agent_key:
+        from_secret: drone-ssh-key
+      repo: jaeger-anomaly-detection-dev
+      target: image-dev
+
+  - name: build-image-release
+    when:
+      ref:
+        - refs/tags/jaeger-anomaly-detection_v*
+        - refs/heads/demo
+    depends_on:
+      - test
+      - audit
+    image: plugins/docker
+    volumes:
+      - name: dockerd
+        path: /var/run/docker.sock
+    settings:
+      daemon_off: true
+      dry_run: true
+      ssh_agent_key:
+        from_secret: drone-ssh-key
+      repo: jaeger-anomaly-detection
+      target: image-release
+
+  - name: push-image-dev
+    when:
+      ref:
+        - refs/heads/main
+    depends_on:
+      - build-image-dev
+    image: plugins/docker
+    volumes:
+      - name: dockerd
+        path: /var/run/docker.sock
+    settings:
+      daemon_off: true
+      registry: gitea.contc
+      username: ci
+      password:
+        from_secret: gitea-docker-registry-password
+      tags:
+        - dev-latest
+      force_tag: true
+      ssh_agent_key:
+        from_secret: drone-ssh-key
+      repo: gitea.contc/continuousc/jaeger-anomaly-detection
+      target: image-dev
+      cache_from:
+        - jaeger-anomaly-detection-dev
+
+  - name: push-image-demo
+    when:
+      ref:
+        - refs/heads/demo
+    depends_on:
+      - build-image-release
+    image: plugins/docker
+    volumes:
+      - name: dockerd
+        path: /var/run/docker.sock
+    settings:
+      daemon_off: true
+      registry: gitea.contc
+      username: ci
+      password:
+        from_secret: gitea-docker-registry-password
+      tags:
+        - latest
+      force_tag: true
+      ssh_agent_key:
+        from_secret: drone-ssh-key
+      repo: gitea.contc/continuousc/jaeger-anomaly-detection
+      target: image-release
+      cache_from:
+        - jaeger-anomaly-detection
+
+  - name: push-image-tagged-dev
+    when:
+      ref:
+        - refs/tags/jaeger-anomaly-detection_v*
+    depends_on:
+      - build-image-dev
+    image: plugins/docker
+    volumes:
+      - name: dockerd
+        path: /var/run/docker.sock
+    settings:
+      daemon_off: true
+      registry: gitea.contc
+      username: ci
+      password:
+        from_secret: gitea-docker-registry-password
+      tags:
+        - dev-latest
+        - dev-${DRONE_TAG#jaeger-anomaly-detection_v}
+      force_tag: true
+      ssh_agent_key:
+        from_secret: drone-ssh-key
+      repo: gitea.contc/continuousc/jaeger-anomaly-detection
+      target: image-dev
+      cache_from:
+        - jaeger-anomaly-detection-dev
+
+  - name: push-image-tagged-release
+    when:
+      ref:
+        - refs/tags/jaeger-anomaly-detection_v*
+    depends_on:
+      - build-image-release
+    image: plugins/docker
+    volumes:
+      - name: dockerd
+        path: /var/run/docker.sock
+    settings:
+      daemon_off: true
+      registry: gitea.contc
+      username: ci
+      password:
+        from_secret: gitea-docker-registry-password
+      tags:
+        - latest
+        - ${DRONE_TAG#jaeger-anomaly-detection_v}
+      force_tag: true
+      ssh_agent_key:
+        from_secret: drone-ssh-key
+      repo: gitea.contc/continuousc/jaeger-anomaly-detection
+      target: image-release
+      cache_from:
+        - jaeger-anomaly-detection
+        
+volumes:
+  - name: dockerd
+    host:
+      path: /var/run/docker.sock

@@ -310,8 +310,7 @@ checksum = "34ac096ce696dc2fcabef30516bb13c0a68a11d30131d3df6f04711467681b04"
 [[package]]
 name = "apistos"
 version = "0.2.5"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "323fa4da746d67706fcaaab467b44fc958efff874112e813d85ca433ab89e6a4"
+source = "git+https://github.com/ContinuousC/Apistos.git?rev=f8583845a7a7f30dccd3908577743fda673656b8#f8583845a7a7f30dccd3908577743fda673656b8"
 dependencies = [
  "actix-service",
  "actix-web",
@@ -332,8 +331,7 @@ dependencies = [
 [[package]]
 name = "apistos-core"
 version = "0.2.5"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "7a298a6c49f4c6b60d23a1171f1932c979778ee867017af695835be0fb01e6b4"
+source = "git+https://github.com/ContinuousC/Apistos.git?rev=f8583845a7a7f30dccd3908577743fda673656b8#f8583845a7a7f30dccd3908577743fda673656b8"
 dependencies = [
  "actix-web",
  "apistos-models",
@@ -343,9 +341,8 @@ dependencies = [
 
 [[package]]
 name = "apistos-gen"
-version = "0.2.4"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "52620c43caacec122a49443745f39111ee2b0badfd8b39c98f742cdc0fdc26c3"
+version = "0.2.5"
+source = "git+https://github.com/ContinuousC/Apistos.git?rev=f8583845a7a7f30dccd3908577743fda673656b8#f8583845a7a7f30dccd3908577743fda673656b8"
 dependencies = [
  "actix-web",
  "convert_case 0.6.0",
@@ -358,9 +355,8 @@ dependencies = [
 
 [[package]]
 name = "apistos-models"
-version = "0.2.4"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "fe7aab4f0034740d6404fd2748111619f59d0df14d7da383b37491dd6568d54e"
+version = "0.2.5"
+source = "git+https://github.com/ContinuousC/Apistos.git?rev=f8583845a7a7f30dccd3908577743fda673656b8#f8583845a7a7f30dccd3908577743fda673656b8"
 dependencies = [
  "indexmap 2.7.0",
  "schemars",
@@ -370,9 +366,8 @@ dependencies = [
 
 [[package]]
 name = "apistos-plugins"
-version = "0.2.4"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "87acb56c1e2e255ed7ec864c7fd2514d44577b4f0d2053180b249230d582d7d6"
+version = "0.2.5"
+source = "git+https://github.com/ContinuousC/Apistos.git?rev=f8583845a7a7f30dccd3908577743fda673656b8#f8583845a7a7f30dccd3908577743fda673656b8"
 dependencies = [
  "actix-web",
 ]
@@ -777,9 +772,8 @@ dependencies = [
 
 [[package]]
 name = "dbschema"
-version = "0.1.38"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "90ac6cdc196abcaf2060b006bbecfafd8e9fe4dcc64fdbc379018a00184356d9"
+version = "0.1.39"
+source = "git+https://github.com/ContinuousC/DBSchema.git?tag=dbschema_v0.1.39#2fbe1c1ec41ee2093502c54a06d112a7ec8fa697"
 dependencies = [
  "chrono",
  "clap",
@@ -793,9 +787,8 @@ dependencies = [
 
 [[package]]
 name = "dbschema-derive"
-version = "0.1.8"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "8e536089c71c48a128d4a21b01cdc6ea7fd6f9d0fb1523eb6a5c52aed0bb52dd"
+version = "0.1.9"
+source = "git+https://github.com/ContinuousC/DBSchema.git?tag=dbschema-derive_v0.1.9#2fbe1c1ec41ee2093502c54a06d112a7ec8fa697"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1062,9 +1055,8 @@ dependencies = [
 
 [[package]]
 name = "graph"
-version = "0.1.6"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "c3df4aa968db541cef44186a2a0fc64eef35981295605e9f08232ad66a1af9ba"
+version = "0.1.7"
+source = "git+https://github.com/ContinuousC/Graph.git?rev=5cbdd653af195accee6710a5c13ee19f40f1cb6f#5cbdd653af195accee6710a5c13ee19f40f1cb6f"
 dependencies = [
  "typed-arena",
 ]
@@ -2035,8 +2027,7 @@ dependencies = [
 [[package]]
 name = "prometheus-api"
 version = "0.1.2-acc.21"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "44fa4818594bf25d4657f1c6e80639bab64f3db2050de95b559149f5950dd4d8"
+source = "git+https://github.com/ContinuousC/PrometheusSchema.git?rev=a47fd68040624f1ebb8746bf47dd3c575637d1e9#a47fd68040624f1ebb8746bf47dd3c575637d1e9"
 dependencies = [
  "chrono",
  "prometheus-core",
@@ -2049,8 +2040,7 @@ dependencies = [
 [[package]]
 name = "prometheus-core"
 version = "0.1.2-acc.8"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "d41a6d0d930dde1e378ba9501037a3e2766dae1c1afc25d3c0c35453a92827ba"
+source = "git+https://github.com/ContinuousC/PrometheusSchema.git?rev=a47fd68040624f1ebb8746bf47dd3c575637d1e9#a47fd68040624f1ebb8746bf47dd3c575637d1e9"
 dependencies = [
  "dbschema",
  "schemars",
@@ -2062,8 +2052,7 @@ dependencies = [
 [[package]]
 name = "prometheus-expr"
 version = "0.1.2-acc.8"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "4f0ee786cfafeed384707e88e9086fdf094b782259c5b84a17f1a27647a21450"
+source = "git+https://github.com/ContinuousC/PrometheusSchema.git?rev=a47fd68040624f1ebb8746bf47dd3c575637d1e9#a47fd68040624f1ebb8746bf47dd3c575637d1e9"
 dependencies = [
  "chrono",
  "derive_more 1.0.0",
@@ -2096,8 +2085,7 @@ dependencies = [
 [[package]]
 name = "prometheus-schema"
 version = "0.1.25-acc.23"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "de21c7fd005723e18fd76151ef9afe641d5616c18b6148a429226b3cb5822374"
+source = "git+https://github.com/ContinuousC/PrometheusSchema.git?rev=a47fd68040624f1ebb8746bf47dd3c575637d1e9#a47fd68040624f1ebb8746bf47dd3c575637d1e9"
 dependencies = [
  "async-recursion",
  "bimap",
@@ -2121,8 +2109,7 @@ dependencies = [
 [[package]]
 name = "prometheus_remote_write"
 version = "0.2.1"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "e8bbe65ed4d83fa101fc2cda31cbc1e76cf3bb1eb93f405456161b5ce80b4ce6"
+source = "git+https://github.com/ContinuousC/PrometheusRemoteWrite.git?rev=fe9d2fa60bddf10a71b0643fd13c955fc894fc11#fe9d2fa60bddf10a71b0643fd13c955fc894fc11"
 dependencies = [
  "http 1.2.0",
  "prometheus-parse",
@@ -2448,8 +2435,7 @@ dependencies = [
 [[package]]
 name = "schemars"
 version = "0.8.22"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "614183945cd5bd063ac5f2b7e6dbd7abbbaf2edf8eb876a9558ec5adc01c1bb7"
+source = "git+https://github.com/ContinuousC/ApistosSchemaRs.git?rev=ace307537ff7913c30f465cbfdaf70f4883618a9#ace307537ff7913c30f465cbfdaf70f4883618a9"
 dependencies = [
  "chrono",
  "dyn-clone",
@@ -2464,8 +2450,7 @@ dependencies = [
 [[package]]
 name = "schemars_derive"
 version = "0.8.21"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "2dfe01b86b3854fd3c3ad6b5e575982c51b7d7e073f2489cc3eae467a5cc27a2"
+source = "git+https://github.com/ContinuousC/ApistosSchemaRs.git?rev=ace307537ff7913c30f465cbfdaf70f4883618a9#ace307537ff7913c30f465cbfdaf70f4883618a9"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -3044,8 +3029,7 @@ checksum = "e421abadd41a4225275504ea4d6566923418b7f05506fbc9c0fe86ba7396114b"
 [[package]]
 name = "tsify"
 version = "0.4.8"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "76c34d5784cbf74149b41747e7033667b6e3fb3088d89042f5f8c09a14276808"
+source = "git+https://github.com/ContinuousC/Tsify.git?rev=de64626ba4dd8a3abca8b8b2dd082334890ec60c#de64626ba4dd8a3abca8b8b2dd082334890ec60c"
 dependencies = [
  "gloo-utils",
  "serde",
@@ -3057,8 +3041,7 @@ dependencies = [
 [[package]]
 name = "tsify-macros"
 version = "0.4.8"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "1081a02f1c6287c9e9e61c1904b6e9d07ad47d5969adf16c36f4bf1b257bfcc7"
+source = "git+https://github.com/ContinuousC/Tsify.git?rev=de64626ba4dd8a3abca8b8b2dd082334890ec60c#de64626ba4dd8a3abca8b8b2dd082334890ec60c"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -3099,8 +3082,7 @@ checksum = "ebc1c04c71510c7f702b52b7c350734c9ff1295c464a03335b00bb84fc54f853"
 [[package]]
 name = "unit"
 version = "0.1.15"
-source = "registry+ssh://git@sigit01/~/Development/ContinuousC/Ktra-registry"
-checksum = "81b2396bcac3af18b709a2edd9ac0ee0cba24d033960e9b04e026f9dc8335900"
+source = "git+https://github.com/ContinuousC/SmartAgent.git?rev=3a1efd89b4445613de89687a039a5c8594c9fcd5#3a1efd89b4445613de89687a039a5c8594c9fcd5"
 dependencies = [
  "clap",
  "nom",

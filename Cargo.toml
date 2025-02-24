@@ -5,13 +5,22 @@ members = [
 	"engine",
 ]
 
-[patch.si]
-jaeger-anomaly-detection = { path = "lib" }
-
-# prometheus-schema = { path = "../PrometheusSchema/schema" }
-# prometheus-expr = { path = "../PrometheusSchema/expr" }
-
 [patch.crates-io]
-schemars_derive = { registry = "si", version = "0.8.21" }
-apistos = { registry = "si", version = "0.2.5" }
-schemars = { registry = "si", version = "0.8.22" }
+apistos = { git = "https://github.com/ContinuousC/Apistos.git", rev = "f8583845a7a7f30dccd3908577743fda673656b8", version = "0.2.5" }
+schemars = { git = "https://github.com/ContinuousC/ApistosSchemaRs.git", rev = "ace307537ff7913c30f465cbfdaf70f4883618a9", version = "0.8.22" }
+schemars_derive = { git = "https://github.com/ContinuousC/ApistosSchemaRs.git", rev = "ace307537ff7913c30f465cbfdaf70f4883618a9", version = "0.8.21" }
+tsify = { git = "https://github.com/ContinuousC/Tsify.git", rev = "de64626ba4dd8a3abca8b8b2dd082334890ec60c", version = "=0.4.8" }
+tsify-macros = { git = "https://github.com/ContinuousC/Tsify.git", rev = "de64626ba4dd8a3abca8b8b2dd082334890ec60c", version = "=0.4.8" }
+prometheus_remote_write = { git = "https://github.com/ContinuousC/PrometheusRemoteWrite.git", rev = "fe9d2fa60bddf10a71b0643fd13c955fc894fc11" }
+
+prometheus-api    = { git = "https://github.com/ContinuousC/PrometheusSchema.git", rev = "a47fd68040624f1ebb8746bf47dd3c575637d1e9" }
+prometheus-core   = { git = "https://github.com/ContinuousC/PrometheusSchema.git", rev = "a47fd68040624f1ebb8746bf47dd3c575637d1e9" }
+prometheus-expr   = { git = "https://github.com/ContinuousC/PrometheusSchema.git", rev = "a47fd68040624f1ebb8746bf47dd3c575637d1e9" }
+prometheus-schema = { git = "https://github.com/ContinuousC/PrometheusSchema.git", rev = "a47fd68040624f1ebb8746bf47dd3c575637d1e9" }
+
+dbschema = { git = "https://github.com/ContinuousC/DBSchema.git", tag = "dbschema_v0.1.39", version = "=0.1.39" }
+dbschema-derive = { git = "https://github.com/ContinuousC/DBSchema.git", tag = "dbschema-derive_v0.1.9", version = "=0.1.9" }
+graph = { git = "https://github.com/ContinuousC/Graph.git", rev = "5cbdd653af195accee6710a5c13ee19f40f1cb6f", version = "=0.1.7" }
+unit              = { git = "https://github.com/ContinuousC/SmartAgent.git", rev = "3a1efd89b4445613de89687a039a5c8594c9fcd5" }
+
+jaeger-anomaly-detection = { path = "lib" }

@@ -15,7 +15,7 @@ ciborium = "0.2.2"
 clap = { version = "4.5.4", features = ["derive", "env"] }
 env_logger = "0.11.3"
 log = "0.4.21"
-prometheus_remote_write = { registry = "si", version = "0.2.1" }
+prometheus_remote_write = "0.2.1"
 reqwest = { version = "0.12.4", features = ["json", "native-tls"] }
 rustc_apfloat = "0.2.0"
 serde = { version = "1.0.198", features = ["derive"] }
@@ -38,28 +38,29 @@ tracing = "0.1.40"
 tracing-actix-web = "0.7.10"
 actix-http = "3.6.0"
 actix-service = "2.0.2"
-jaeger-anomaly-detection = { version = "=0.1.0-acc.34", registry = "si", features = [
-    "apistos",
-] }
 schemars = "0.8"
 apistos = "0.2.4"
-
-
-# Local dependencies
-
-prometheus-core = { version = "=0.1.2-acc.8", registry = "si", features = [
-    "dbschema",
-] }
-prometheus-expr = { version = "=0.1.2-acc.8", registry = "si", features = [
-    "api",
-    "schema",
-    "schemars",
-] }
-prometheus-schema = { version = "=0.1.25-acc.23", registry = "si", features = [
-    "schemars",
-] }
-prometheus-api = { version = "=0.1.2-acc.21", registry = "si" }
 regex = "1.10.4"
 ieee-apsqrt = "0.1.1"
 distrs = "0.2.2"
 ordered-float = "4.6.0"
+
+
+# Local dependencies
+
+jaeger-anomaly-detection = { version = "=0.1.0-acc.34", features = [
+    "apistos",
+] }
+
+prometheus-core = { version = "=0.1.2-acc.8", features = [
+    "dbschema",
+] }
+prometheus-expr = { version = "=0.1.2-acc.8", features = [
+    "api",
+    "schema",
+    "schemars",
+] }
+prometheus-schema = { version = "=0.1.25-acc.23", features = [
+    "schemars",
+] }
+prometheus-api = { version = "=0.1.2-acc.21" }

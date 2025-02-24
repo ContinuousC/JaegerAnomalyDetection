@@ -22,9 +22,9 @@ tsify = ["dep:tsify", "dep:wasm-bindgen"]
 [dependencies]
 apistos = { version = "0.2.4", optional = true }
 # schemars = { version = "0.8", optional = true }
-schemars = { registry = "si", version = "0.8.22", optional = true }
+schemars = { version = "0.8.22", optional = true }
 serde = { version = "1.0.198", features = ["derive"] }
-tsify = { registry = "si", version = "0.4.6", optional = true }
+tsify = { version = "0.4.8", optional = true }
 wasm-bindgen = { version = "0.2", optional = true }
 statrs = "0.16.0"
 tap = "1.0.1"
@@ -32,18 +32,18 @@ ordered-float = "4.5.0"
 thiserror = "2.0.9"
 serde_with = "3.12.0"
 chrono = "0.4.39"
+const_format = "0.2.34"
+unit = "0.1.15"
 
 # Local dependencies
 
-prometheus-core = { version = "=0.1.2-acc.8", registry = "si" }
-prometheus-expr = { version = "=0.1.2-acc.8", registry = "si", features = [
+prometheus-core = "=0.1.2-acc.8"
+prometheus-expr = { version = "=0.1.2-acc.8", features = [
     "api",
     "schema",
 ] }
-prometheus-api = { version = "=0.1.2-acc.21", registry = "si" }
-prometheus-schema = { version = "=0.1.25-acc.23", registry = "si" }
-const_format = "0.2.34"
-unit = { version = "0.1.15", registry = "si" }
+prometheus-api = { version = "=0.1.2-acc.21" }
+prometheus-schema = { version = "=0.1.25-acc.23" }
 
 
 # For webassembly, enable the "js" feature in getrandom.
